@@ -1,0 +1,41 @@
+# PhysioSplat config for EndoNeRF-style scenes (Sec. 3 defaults).
+iterations: 30000
+position_lr: 0.0016          # eta = 1.6e-3, cosine decay
+feature_lr: 0.0025
+deform_lr: 0.0016
+rigid_lr: 0.001
+semantic_lr: 0.005
+
+# PSGD
+tau: 0.5
+
+# Hex-plane deformation field
+hexplane_feature_dim: 64     # D = 64
+hexplane_resolutions: [32, 64, 128]
+scene_bounds: 1.5
+
+# DBR (biomechanical regularization)
+arap_k: 16                   # K = 16 nearest neighbours -> zeta
+collision_epsilon: 0.002     # 2 mm
+lambda_strain: 0.1
+lambda_col: 1.0
+lambda_vol: 0.05
+
+# Objective weights (Eq. 8)
+lambda_ssim: 0.2
+lambda_mask: 0.1
+lambda_biomech: 0.01
+
+# SAAM
+init_specular_albedo: 0.1    # beta init = 0.1
+init_roughness: 0.3
+
+# Densification / pruning
+densify_from_iter: 500
+densify_until_iter: 15000
+densify_interval: 100
+opacity_prune_threshold: 0.005
+init_scale: 0.02
+
+log_interval: 100
+seed: 0

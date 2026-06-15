@@ -1,0 +1,8 @@
+torch>=2.0
+numpy>=1.23
+scipy>=1.9
+imageio>=2.25
+imageio-ffmpeg>=0.4
+pyyaml>=6.0
+tqdm>=4.64
+pytest>=7.0

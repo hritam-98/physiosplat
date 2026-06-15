@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Outputs
+output/
+renders/
+*.pt
+*.ckpt
+*.log
+
+# Data
+data/
+*.mp4
+*.npy
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
