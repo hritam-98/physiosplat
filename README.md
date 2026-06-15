@@ -3,6 +3,8 @@
 **Physics-Informed Dynamic Gaussian Splatting for Surgical Scene Reconstruction**
 — H. Basak and Z. Yin.
 
+🌐 **Project page:** https://hritam-98.github.io/physiosplat/
+
 PhysioSplat reconstructs dynamic endoscopic scenes by grounding 4D Gaussian
 Splatting in three physical models:
 
