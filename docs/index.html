@@ -169,26 +169,58 @@
     <h2>From occluded video to clean 4D anatomy</h2>
   </div>
 
-  <figure class="shot reveal">
-    <img src="static/img/qualitative_grid.jpg" alt="Input frames with surgical tools vs reconstructed tool-free 3D models across four cases" loading="lazy" />
-    <figcaption><b>Tool removal & anatomy recovery.</b> Top: input frames with occluding instruments. Bottom: PhysioSplat's reconstructed 3D model — instruments removed, the tissue behind them recovered.</figcaption>
-  </figure>
+  <p class="block-intro reveal"><b>Tool removal &amp; anatomy recovery.</b> Each card pairs an <em>input</em> frame (top, with occluding instruments) and PhysioSplat's reconstructed <em>3D model</em> (bottom) — instruments erased, the tissue behind them recovered.</p>
+  <div class="case-grid">
+    <figure class="case-card reveal">
+      <img src="static/img/case1.jpg" alt="Case 1: input with tools above, tool-free 3D reconstruction below" loading="lazy" />
+      <span class="case-tag tag-in">input</span><span class="case-tag tag-out">3D model</span>
+      <figcaption>Case 1</figcaption>
+    </figure>
+    <figure class="case-card reveal">
+      <img src="static/img/case2.jpg" alt="Case 2: input with tools above, tool-free 3D reconstruction below" loading="lazy" />
+      <span class="case-tag tag-in">input</span><span class="case-tag tag-out">3D model</span>
+      <figcaption>Case 2</figcaption>
+    </figure>
+    <figure class="case-card reveal">
+      <img src="static/img/case3.jpg" alt="Case 3: input with tools above, tool-free 3D reconstruction below" loading="lazy" />
+      <span class="case-tag tag-in">input</span><span class="case-tag tag-out">3D model</span>
+      <figcaption>Case 3</figcaption>
+    </figure>
+    <figure class="case-card reveal">
+      <img src="static/img/case4.jpg" alt="Case 4: input with tools above, tool-free 3D reconstruction below" loading="lazy" />
+      <span class="case-tag tag-in">input</span><span class="case-tag tag-out">3D model</span>
+      <figcaption>Case 4</figcaption>
+    </figure>
+  </div>
 
+  <div class="sub-head reveal">
+    <h3>Dynamic viewpoint rendering</h3>
+    <p class="muted">The green pyramid is the moving camera frustum. Because tool and tissue are disentangled, the full geometry is recovered free of camera occlusion — and can be re-rendered from novel views.</p>
+  </div>
+  <div class="case-grid frustum-grid">
+    <figure class="case-card reveal">
+      <img src="static/img/frustum1.jpg" alt="Reconstructed tissue with green camera frustum, case 1" loading="lazy" />
+      <figcaption>Free-viewpoint · Case 1</figcaption>
+    </figure>
+    <figure class="case-card reveal">
+      <img src="static/img/frustum2.jpg" alt="Reconstructed tissue with green camera frustum, case 2" loading="lazy" />
+      <figcaption>Free-viewpoint · Case 2</figcaption>
+    </figure>
+  </div>
+
+  <div class="sub-head reveal">
+    <h3>Comparison &amp; ablation</h3>
+  </div>
   <div class="shot-grid">
     <figure class="shot reveal">
       <img src="static/img/sota_comparison.jpg" alt="Ours vs D4Recon vs Reference" loading="lazy" />
       <figcaption><b>vs. state of the art.</b> Ours · D4Recon · reference. Prior work leaves geometric noise and floaters; PhysioSplat reconstructs coherent surfaces.</figcaption>
     </figure>
     <figure class="shot reveal">
-      <img src="static/img/multiview.jpg" alt="Dynamic viewpoint rendering and global 3D scene reconstruction" loading="lazy" />
-      <figcaption><b>Dynamic viewpoint rendering.</b> The green frustum is the moving camera; the full geometry is recovered free of camera occlusion.</figcaption>
+      <img src="static/img/ablation.jpg" alt="Ablation across 4DGS baseline, w/o SAAM and DBR, w/o SAAM, full model, reference" loading="lazy" />
+      <figcaption><b>Ablation.</b> 4DGS baseline → +PSGD → +DBR → full model. Each physical prior tightens geometry and suppresses artifacts, converging to the reference.</figcaption>
     </figure>
   </div>
-
-  <figure class="shot reveal">
-    <img src="static/img/ablation.jpg" alt="Ablation across 4DGS baseline, w/o SAAM and DBR, w/o SAAM, full model, reference" loading="lazy" />
-    <figcaption><b>Ablation.</b> 4DGS baseline → +PSGD → +DBR → full model. Each physical prior tightens geometry and suppresses artifacts, converging to the reference.</figcaption>
-  </figure>
 </section>
 
 <!-- ====================== METRICS ====================== -->
