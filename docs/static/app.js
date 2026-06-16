@@ -129,7 +129,12 @@
       front.style.clipPath = "inset(0 " + (100 - p) + "% 0 0)";
       handle.style.left = p + "%";
     }
-    widget.addEventListener("mousedown", (e) => { dragging = true; setPos(e.clientX); });
+    // stop native image ghost-drag from swallowing mousemove events
+    widget.querySelectorAll("img").forEach((im) => {
+      im.draggable = false;
+      im.addEventListener("dragstart", (e) => e.preventDefault());
+    });
+    widget.addEventListener("mousedown", (e) => { e.preventDefault(); dragging = true; setPos(e.clientX); });
     window.addEventListener("mousemove", (e) => { if (dragging) setPos(e.clientX); });
     window.addEventListener("mouseup", () => (dragging = false));
     widget.addEventListener("touchstart", (e) => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
