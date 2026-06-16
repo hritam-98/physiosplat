@@ -116,46 +116,44 @@
   }, { threshold: 0.3 });
   document.querySelectorAll(".bars").forEach((el) => barIO.observe(el));
 
-  /* ---------- Drag-to-compare slider ---------- */
-  const widget = document.getElementById("compare-widget");
-  if (widget) {
-    const front = document.getElementById("cmp-front");
-    const handle = document.getElementById("cmp-handle");
+  /* ---------- Drag-to-compare sliders (multiple) ---------- */
+  document.querySelectorAll(".compare").forEach((widget) => {
+    const front = widget.querySelector(".cmp-front");
+    const handle = widget.querySelector(".cmp-handle");
+    if (!front || !handle) return;
     let dragging = false;
     function setPos(clientX) {
       const r = widget.getBoundingClientRect();
       let p = ((clientX - r.left) / r.width) * 100;
       p = Math.max(2, Math.min(98, p));
-      front.style.width = p + "%";
+      front.style.clipPath = "inset(0 " + (100 - p) + "% 0 0)";
       handle.style.left = p + "%";
     }
-    const start = () => (dragging = true);
-    const end = () => (dragging = false);
-    const move = (x) => { if (dragging) setPos(x); };
+    widget.addEventListener("mousedown", (e) => { dragging = true; setPos(e.clientX); });
+    window.addEventListener("mousemove", (e) => { if (dragging) setPos(e.clientX); });
+    window.addEventListener("mouseup", () => (dragging = false));
+    widget.addEventListener("touchstart", (e) => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener("touchmove", (e) => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener("touchend", () => (dragging = false));
 
-    widget.addEventListener("mousedown", (e) => { start(); setPos(e.clientX); });
-    window.addEventListener("mousemove", (e) => move(e.clientX));
-    window.addEventListener("mouseup", end);
-    widget.addEventListener("touchstart", (e) => { start(); setPos(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener("touchmove", (e) => move(e.touches[0].clientX), { passive: true });
-    window.addEventListener("touchend", end);
-
-    // subtle auto-demo on first reveal
-    const demoIO = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          let p = 50, dir = 1, n = 0;
-          const id = setInterval(() => {
-            p += dir * 1.4; if (p > 72 || p < 30) dir *= -1;
-            front.style.width = p + "%"; handle.style.left = p + "%";
-            if (++n > 60) { clearInterval(id); front.style.width = "50%"; handle.style.left = "50%"; }
-          }, 16);
-          demoIO.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    demoIO.observe(widget);
-  }
+    // subtle auto-demo on first reveal (only on the flagged widget)
+    if (widget.dataset.demo) {
+      const demoIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            let p = 50, dir = 1, n = 0;
+            const id = setInterval(() => {
+              p += dir * 1.4; if (p > 72 || p < 30) dir *= -1;
+              front.style.clipPath = "inset(0 " + (100 - p) + "% 0 0)"; handle.style.left = p + "%";
+              if (++n > 60) { clearInterval(id); front.style.clipPath = "inset(0 50% 0 0)"; handle.style.left = "50%"; }
+            }, 16);
+            demoIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      demoIO.observe(widget);
+    }
+  });
 
   /* ---------- Copy buttons ---------- */
   function wireCopy(btnId, srcId) {
