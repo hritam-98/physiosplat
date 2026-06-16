@@ -149,6 +149,9 @@ h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.9rem,4.5vw,3rem
 .tag-out{top:50%;background:rgba(76,201,240,.16);color:var(--cyan);border:1px solid rgba(76,201,240,.4)}
 .frustum-grid{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
 .frustum-grid .case-card img{background:#fafafa}
+.dv-clip{max-width:880px;margin:0 auto;border-radius:18px;overflow:hidden;border:1px solid var(--panel-brd);background:#f7f8fa;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.dv-clip video{display:block;width:100%;height:auto;background:#f7f8fa}
+.dv-clip figcaption{padding:15px 22px;font-size:.92rem;color:#aeb8d4;background:var(--panel)}
 .sub-head{text-align:center;margin:64px auto 30px;max-width:680px}
 .sub-head h3{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.3rem,3vw,1.8rem)}
 .sub-head .muted{margin-top:10px;font-size:.98rem}

@@ -18,6 +18,9 @@ renders/
 data/
 *.mp4
 *.npy
+# ...but keep the small dynamic-viewpoint clip used on the project page
+!docs/static/video/
+!docs/static/video/*.mp4
 
 # Environments
 .venv/
